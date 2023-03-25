@@ -33,27 +33,27 @@ int countPairs3(int *arr, int len, int value) {
   return 0;
   int num = 0;
     for (int i = 0; i < len - 1; i++) {
-        int rightB = len, leftB = i;
-        while (leftB < rightB - 1) {
-            int middleB = (leftB + rightB) / 2;
-            if (arr[i] + arr[middleB] == value) {
+        int lB = i, rB = len;
+        while (lB < rB - 1) {
+            int mB = (lB + rB) / 2;
+            if (arr[i] + arr[mB] == value) {
                 num++;
-                int middleB2 = middleB + 1;
-                while (arr[i] + arr[middleB2] == value && middleB2 < rightB) {
+                int mB2 = mB + 1;
+                while (arr[i] + arr[mB2] == value && mB2 < rB) {
                     num++;
-                    middleB2++;
+                    mB2++;
                 }
-                middleB2 = middleB - 1;
-                while (arr[i] + arr[middleB2] == value && middleB2 > leftB) {
+                mB2 = mB - 1;
+                while (arr[i] + arr[mB2] == value && mB2 > lB) {
                     num++;
-                    middleB2--;
+                    mB2--;
                 }
                 break;
             }
-            if (arr[i] + arr[middleB] > value) {
-                rightB = middleB;
+            if (arr[i] + arr[mB] > value) {
+                rB = mB;
             } else {
-                leftB = middleB;
+                lB = mB;
             }
         }
     }
