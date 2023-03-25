@@ -25,29 +25,33 @@ int countPairs2(int *arr, int len, int value) {
 }
 int countPairs3(int *arr, int len, int value) {
   return 0;
-  int num = 0;
-    for (int i = 0; i < len - 1; i++) {
-        int lB = i, rB = len;
-        while (lB < rB - 1) {
+  int num = 0, lB = 0, rB = len - 1;
+    for (int i = 0; i < len; i++) {
+      lB = i + 1;
+      rB = len - 1;
+      if (arr[i] > value) {
+        break;
+      }
+      while (lB <= rB) {
             int mB = (lB + rB) / 2;
             if (arr[i] + arr[mB] == value) {
                 num++;
-                int mB2 = mB + 1;
-                while (arr[i] + arr[mB2] == value && mB2 < rB) {
+                int mB2 = mB;
+                while (arr[i] + arr[mB2] == value && mB2 <= rB) {
                     num++;
                     mB2++;
                 }
                 mB2 = mB - 1;
-                while (arr[i] + arr[mB2] == value && mB2 > lB) {
+                while (arr[i] + arr[mB2] == value && mB2 >= lB) {
                     num++;
                     mB2--;
                 }
                 break;
             }
             if (arr[i] + arr[mB] > value) {
-                rB = mB;
+                rB = mB - 1;
             } else {
-                lB = mB;
+                lB = mB + 1;
             }
         }
     }
