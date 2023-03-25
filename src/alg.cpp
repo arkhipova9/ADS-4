@@ -52,8 +52,7 @@ int countPairs3(int *arr, int len, int value) {
             }
             if (arr[i] + arr[middleB] > value) {
                 rightB = middleB;
-            }
-            else {
+            } else {
                 leftB = middleB;
             }
         }
